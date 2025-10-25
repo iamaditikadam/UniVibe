@@ -413,7 +413,7 @@ export default function EventDetailPage() {
                       <h4 className="font-medium text-gray-900 mb-2">{post.title}</h4>
                       <p className="text-gray-600 text-sm mb-3">{post.description}</p>
                       <div className="flex flex-wrap gap-2 mb-3">
-                        {post.skillsNeeded.map(skill => (
+                        {post.skillsNeeded.map((skill: string) => (
                           <span
                             key={skill}
                             className="px-2 py-1 bg-primary-100 text-primary-700 text-xs rounded-full"
