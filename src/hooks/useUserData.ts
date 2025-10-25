@@ -28,6 +28,7 @@ export const useUserData = () => {
           // If no user data exists, create default user data
           console.log('No user data found, creating default profile...')
           const defaultUserData = {
+            id: user.uid,
             name: user.displayName || user.email?.split('@')[0] || 'User',
             email: user.email || '',
             campus: 'RMIT University',
