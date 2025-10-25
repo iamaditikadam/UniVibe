@@ -37,6 +37,7 @@ export interface Event {
   tags: string[]
   requirements: string[]
   hasFood: boolean
+  isBeginnerFriendly?: boolean
   createdBy: string
   createdAt: Date
   updatedAt: Date

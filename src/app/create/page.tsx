@@ -118,6 +118,7 @@ export default function CreateEventPage() {
         tags: formData.tags,
         requirements: [],
         hasFood: formData.hasFreeFood,
+        isBeginnerFriendly: formData.isBeginnerFriendly,
         image: imageUrl,
         createdBy: user.uid
       }

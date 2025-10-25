@@ -147,7 +147,7 @@ export default function EventDetailPage() {
             <span className="bg-white/90 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
               {getCategoryEmoji(event.category)} {event.category}
             </span>
-            {event.hasFreeFood && (
+            {event.hasFood && (
               <span className="bg-green-500/90 text-white px-3 py-1 rounded-full text-sm font-medium">
                 🍕 Free Food
               </span>
