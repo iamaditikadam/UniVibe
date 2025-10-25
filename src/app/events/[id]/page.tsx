@@ -353,9 +353,9 @@ export default function EventDetailPage() {
                               : 'bg-gray-100 text-gray-900'
                           }`}
                         >
-                          <p className="text-sm">{message.content}</p>
+                          <p className="text-sm">{message.text}</p>
                           <p className="text-xs opacity-70 mt-1">
-                            {message.senderName} • {message.createdAt?.toDate ? new Date(message.createdAt.toDate()).toLocaleTimeString() : 'Just now'}
+                            {message.senderName} • {message.createdAt.toLocaleTimeString()}
                           </p>
                         </div>
                       </div>

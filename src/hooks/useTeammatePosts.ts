@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { collection, query, where, orderBy, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
+import { TeammatePost } from '@/lib/types'
 
 export const useTeammatePosts = (eventId: string) => {
   const { user } = useAuth()
-  const [posts, setPosts] = useState<any[]>([])
+  const [posts, setPosts] = useState<TeammatePost[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -25,10 +26,19 @@ export const useTeammatePosts = (eventId: string) => {
     const unsubscribe = onSnapshot(
       postsQuery,
       (snapshot) => {
-        const teammatePosts = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
+        const teammatePosts = snapshot.docs.map(doc => {
+          const data = doc.data()
+          return {
+            id: doc.id,
+            eventId: data.eventId,
+            title: data.title,
+            description: data.description,
+            skillsNeeded: data.skillsNeeded,
+            authorId: data.authorId,
+            authorName: data.authorName,
+            createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : new Date(data.createdAt || 0)
+          } as TeammatePost
+        })
         setPosts(teammatePosts)
       },
       (err) => {
@@ -43,7 +53,7 @@ export const useTeammatePosts = (eventId: string) => {
   const createPost = async (postData: {
     title: string
     description: string
-    skills: string[]
+    skillsNeeded: string[]
     lookingFor: string[]
     contactInfo: string
   }) => {

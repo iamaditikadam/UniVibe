@@ -5,10 +5,11 @@ import { useAuth } from '@/contexts/AuthContext'
 import { firestoreHelpers, rsvpsRef } from '@/lib/firestore-helpers'
 import { collection, query, where, orderBy, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
+import { ChatMessage } from '@/lib/types'
 
 export const useChat = (eventId: string) => {
   const { user } = useAuth()
-  const [messages, setMessages] = useState<any[]>([])
+  const [messages, setMessages] = useState<ChatMessage[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -30,15 +31,20 @@ export const useChat = (eventId: string) => {
       messagesQuery,
       (snapshot) => {
         console.log('Chat snapshot received:', snapshot.docs.length, 'messages')
-        const chatMessages = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
+        const chatMessages = snapshot.docs.map(doc => {
+          const data = doc.data()
+          return {
+            id: doc.id,
+            eventId: data.eventId,
+            senderId: data.senderId,
+            senderName: data.senderName,
+            text: data.text,
+            createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : new Date(data.createdAt || 0)
+          } as ChatMessage
+        })
         // Sort messages by creation time in JavaScript
         chatMessages.sort((a, b) => {
-          const aTime = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(0)
-          const bTime = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(0)
-          return aTime.getTime() - bTime.getTime()
+          return a.createdAt.getTime() - b.createdAt.getTime()
         })
         setMessages(chatMessages)
         setError(null) // Clear error on successful load
@@ -66,7 +72,7 @@ export const useChat = (eventId: string) => {
         senderId: user.uid,
         senderName: user.displayName || user.email?.split('@')[0] || 'Anonymous',
         senderEmail: user.email,
-        content: content.trim(),
+        text: content.trim(),
         createdAt: serverTimestamp()
       }
       

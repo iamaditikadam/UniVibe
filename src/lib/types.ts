@@ -66,8 +66,8 @@ export interface TeammatePost {
   title: string
   description: string
   skillsNeeded: string[]
-  members: string[]
-  createdBy: string
+  authorId: string
+  authorName: string
   createdAt: Date
 }
 
