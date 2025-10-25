@@ -341,17 +341,17 @@ export default function ProfilePage() {
                         Cancel Save
                       </button>
                     )}
-                    <Button 
-                      variant="outline" 
+                    <button 
                       onClick={() => {
                         setIsEditing(false)
                         setSaveStatus('idle')
                         setSelectedAvatar(null)
                       }}
                       disabled={saveStatus === 'saving'}
+                      className="px-6 py-3 border border-gray-300 bg-white hover:bg-gray-50 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Cancel
-                    </Button>
+                    </button>
                   </div>
                 </div>
               )}
@@ -376,9 +376,13 @@ export default function ProfilePage() {
                     onChange={(e) => setNewInterest(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && addInterest()}
                   />
-                  <Button onClick={addInterest} disabled={!newInterest.trim()}>
+                  <button 
+                    onClick={addInterest} 
+                    disabled={!newInterest.trim()}
+                    className="px-4 py-2 bg-gradient-primary text-white rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
                     Add
-                  </Button>
+                  </button>
                 </div>
               )}
 
