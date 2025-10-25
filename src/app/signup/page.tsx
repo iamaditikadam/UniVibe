@@ -109,7 +109,7 @@ export default function SignupPage() {
         interests: formData.interests,
         vibePoints: 0,
         createdAt: new Date(),
-        userType: userType === 'club' ? 'club' : 'student',
+        userType: (userType === 'club' ? 'club' : 'student') as 'student' | 'club',
         ...(userType === 'club' && {
           clubDescription: formData.clubDescription,
           clubWebsite: formData.clubWebsite,
