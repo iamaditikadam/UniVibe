@@ -5,13 +5,13 @@ import { getStorage } from 'firebase/storage'
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCO_LQ-imliC6e2u7S-stW0a2PLPedWsiY",
-  authDomain: "univibe-3dae0.firebaseapp.com",
-  projectId: "univibe-3dae0",
-  storageBucket: "univibe-3dae0.firebasestorage.app",
-  messagingSenderId: "1091723662611",
-  appId: "1:1091723662611:web:444cd8cbd870aad357f6e6",
-  measurementId: "G-FFELSLJQSK"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 }
 
 // Initialize Firebase
