@@ -391,15 +391,14 @@ export default function ProfilePage() {
               {/* Interest Tags */}
               <div className="flex flex-wrap gap-2">
                 {userInfo.interests.map(interest => (
-                  <Badge
+                  <span
                     key={interest}
-                    variant="secondary"
-                    className="cursor-pointer hover:bg-gray-200"
+                    className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium cursor-pointer hover:bg-gray-200 transition-all duration-300"
                     onClick={() => isEditing && removeInterest(interest)}
                   >
                     {interest}
                     {isEditing && ' ×'}
-                  </Badge>
+                  </span>
                 ))}
               </div>
 
