@@ -370,11 +370,13 @@ export default function ProfilePage() {
               {/* Add Interest */}
               {isEditing && (
                 <div className="flex gap-2">
-                  <Input
+                  <input
+                    type="text"
                     placeholder="Add an interest..."
                     value={newInterest}
                     onChange={(e) => setNewInterest(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && addInterest()}
+                    className="flex-1 h-10 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   />
                   <button 
                     onClick={addInterest} 
