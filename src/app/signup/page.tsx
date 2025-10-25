@@ -108,17 +108,13 @@ export default function SignupPage() {
         campus: formData.campus,
         interests: formData.interests,
         vibePoints: 0,
-        createdAt: new Date()
-      }
-      
-      // Add club-specific data if applicable
-      if (userType === 'club') {
-        userData.clubDescription = formData.clubDescription
-        userData.clubWebsite = formData.clubWebsite
-        userData.clubCategory = formData.clubCategory
-        userData.userType = 'club'
-      } else {
-        userData.userType = 'student'
+        createdAt: new Date(),
+        userType: userType === 'club' ? 'club' : 'student',
+        ...(userType === 'club' && {
+          clubDescription: formData.clubDescription,
+          clubWebsite: formData.clubWebsite,
+          clubCategory: formData.clubCategory
+        })
       }
       
       await saveUserData(user.uid, userData)
