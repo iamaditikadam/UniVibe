@@ -68,6 +68,7 @@ export interface TeammatePost {
   skillsNeeded: string[]
   authorId: string
   authorName: string
+  members: string[]
   createdAt: Date
 }
 

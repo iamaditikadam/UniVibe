@@ -240,6 +240,7 @@ export const mockTeammatePosts: Record<string, TeammatePost[]> = {
       skillsNeeded: ['React', 'Next.js', 'TypeScript', 'UI/UX'],
       authorId: '1',
       authorName: 'Alex Chen',
+      members: ['1'],
       createdAt: new Date('2024-02-10T14:00:00'),
     },
     {
@@ -250,6 +251,7 @@ export const mockTeammatePosts: Record<string, TeammatePost[]> = {
       skillsNeeded: ['Python', 'Machine Learning', 'Data Analysis'],
       authorId: '2',
       authorName: 'Sarah Kim',
+      members: ['2'],
       createdAt: new Date('2024-02-11T16:30:00'),
     },
   ],

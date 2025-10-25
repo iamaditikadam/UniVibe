@@ -36,6 +36,7 @@ export const useTeammatePosts = (eventId: string) => {
             skillsNeeded: data.skillsNeeded,
             authorId: data.authorId,
             authorName: data.authorName,
+            members: data.members || [data.authorId], // Default to author as first member
             createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : new Date(data.createdAt || 0)
           } as TeammatePost
         })
